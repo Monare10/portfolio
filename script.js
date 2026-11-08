@@ -62,33 +62,7 @@ animatedEls.forEach(el => {
   observer.observe(el);
 });
 
-// ── CONTACT FORM ─────────────────────────────────
-const form = document.getElementById('contact-form');
-const note = document.getElementById('form-note');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name    = document.getElementById('name').value;
-  const email   = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
-
-  // Build mailto link
-  const mailtoLink =
-    `mailto:nrammutla41@gmail.com` +
-    `?subject=${encodeURIComponent(subject + ' - from ' + name)}` +
-    `&body=${encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    )}`;
-
-  window.location.href = mailtoLink;
-
-  note.textContent = '✓ Opening your email client...';
-  setTimeout(() => {
-    note.textContent = '';
-    form.reset();
-  }, 3000);
-});
 
 // ── SMOOTH TYPING EFFECT ON HERO ─────────────────
 const roles = [
