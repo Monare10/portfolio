@@ -92,18 +92,23 @@ form.addEventListener('submit', (e) => {
 
 // ── SMOOTH TYPING EFFECT ON HERO ─────────────────
 const roles = [
-  'Full-Stack Software Developer',
-  'Python & FastAPI Developer',
-  'React Frontend Developer',
-  'Database Designer',
+  'Full Stack Development',
+  'Backend Engineering',
+  'Frontend Engineering',
+  'Software Engineering'
 ];
+
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 const subtitleEl = document.querySelector('.hero-subtitle');
 
 function typeRole() {
+  // Safety check in case the element isn't found
+  if (!subtitleEl) return; 
+
   const current = roles[roleIndex];
+  
   if (isDeleting) {
     subtitleEl.textContent = current.substring(0, charIndex - 1);
     charIndex--;
@@ -112,15 +117,26 @@ function typeRole() {
     charIndex++;
   }
 
+  // Logic for when to delete or move to next word
+  let typeSpeed = isDeleting ? 50 : 80;
+
   if (!isDeleting && charIndex === current.length) {
-    setTimeout(() => { isDeleting = true; }, 2000);
+    // Pause at the end of the word before deleting
+    typeSpeed = 2000; 
+    isDeleting = true;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
-    roleIndex  = (roleIndex + 1) % roles.length;
+    roleIndex = (roleIndex + 1) % roles.length;
+    // Pause before typing the next word
+    typeSpeed = 500; 
   }
 
-  const speed = isDeleting ? 50 : 80;
-  setTimeout(typeRole, speed);
+  setTimeout(typeRole, typeSpeed);
 }
 
-setTimeout(typeRole, 1000);
+// Wait for the DOM to load before starting the animation
+document.addEventListener('DOMContentLoaded', () => {
+  // Clear the default text from HTML so it doesn't overlap
+  if (subtitleEl) subtitleEl.textContent = ''; 
+  setTimeout(typeRole, 500);
+});
