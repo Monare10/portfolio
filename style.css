@@ -480,3 +480,56 @@ ul { list-style: none; }
   .about-highlights { grid-template-columns: 1fr; }
   .footer-content { flex-direction: column; text-align: center; }
 }
+
+/* ── NEW HERO IMAGE (DARK MODE) ───────────────────── */
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* Ensures the image doesn't overflow the screen */
+  max-width: 100%; 
+}
+
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px; /* Adjust this to make the picture bigger/smaller */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The Glowing Aura Behind You */
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 110%;
+  /* This creates the electric blue aura */
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(13, 17, 23, 0) 70%);
+  z-index: 0;
+  filter: blur(40px); /* Softens the glow */
+}
+
+/* Your Profile Picture */
+.hero-profile-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  border-radius: 20px; /* Smooth round corners */
+  
+  /* Creates a subtle 1px glowing border around the image */
+  border: 1px solid rgba(56, 189, 248, 0.3); 
+  
+  /* Adds a shadow and a tiny outer glow */
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15), 
+              0 20px 40px rgba(0, 0, 0, 0.6);
+              
+  /* Optional: makes the image slightly darker so the white shirt pops more */
+  filter: brightness(0.95);
+}
